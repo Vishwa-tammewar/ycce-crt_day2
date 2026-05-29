@@ -1,0 +1,147 @@
+import java.util.Scanner;
+
+public class prac2 {
+
+
+    public class getNode{
+        int data ;
+        getNode next;
+        public getNode() {
+            next =null;
+        }
+    }
+    Scanner sc=new Scanner(System.in );
+    getNode head=null;
+    public void append(){
+        getNode newNode= new getNode();
+        int data=sc.nextInt();
+        newNode.data=data;
+        if(head==null){
+            head=newNode;
+        }
+        else{
+            getNode ptr=head;
+            while(ptr.next!=null){
+                ptr=ptr.next;
+            }
+            ptr.next=newNode;
+            System.out.println("Added");
+        }
+    }
+    public void append_at_beg(){
+        getNode newNode= new getNode();
+        int data=sc.nextInt();
+        newNode.data=data;
+        if(head==null){
+            head=newNode;
+        }
+        else{
+          newNode.next=head;
+          head=newNode;
+
+        }
+
+    }
+    public void append_at_after(){
+        getNode newNode= new getNode();
+        System.out.println("Enter the data");
+        int data=sc.nextInt();
+        newNode.data=data;
+        System.out.println("Enter the place/key");
+        int key=sc.nextInt();
+        if(head==null){
+            head=newNode;
+        }
+        else{
+            getNode ptr=head;
+           while(ptr!=null){
+               if(ptr.data==key){
+                  break;
+               }
+               ptr=ptr.next;
+           }
+               if(ptr.next==null){
+                   System.out.println("key is not found");
+               }
+
+            newNode.next=ptr.next;
+            ptr.next=newNode;
+        }
+
+    }
+    public void delete_at_beg(){
+        if(head==null){
+            System.out.println("It is empty");
+        }
+        else{
+            head=head.next;
+        }
+    }
+    public void delete_at_end(){
+        if(head==null){
+            System.out.println("It is empty");
+        }
+        else if(head.next==null){
+            head=null;
+        }
+        else{
+            getNode ptr=head;
+            while(ptr.next.next!=null){
+                ptr=ptr.next;
+            }
+            ptr.next=null;
+        }
+    }
+    public void traverse() {
+        if(head==null){
+            System.out.println("List is empty");
+        }
+        else{
+            getNode ptr=head;
+            while(ptr!=null){
+                System.out.print(ptr.data+"->");
+                ptr=ptr.next;
+            }
+
+        }
+    }
+    public static void main(String[] args){
+        prac2 obj=new prac2();
+        Scanner sc=new Scanner(System.in);
+        while(true) {
+            System.out.println("Choose one option");
+            System.out.println("1.Append ");
+            System.out.println("2.Traverse");
+            System.out.println("3.Append at beg ");
+            System.out.println("4.Append at after ");
+            System.out.println("5.Delete at beg ");
+            System.out.println("6.Delete at end");
+            System.out.println("0.exit");
+
+            int ch = sc.nextInt();
+            switch (ch) {
+                case 1:
+                    obj.append();
+                    break;
+                case 2:
+                    obj.traverse();
+                    break;
+                case 3:
+                    obj.append_at_beg();
+                    break;
+                case 4:
+                    obj.append_at_after();
+                    break;
+                case 5:
+                    obj.delete_at_beg();
+                    break;
+                case 6:
+                    obj.delete_at_end();
+                    break;
+                case 0:
+                    System.exit(0);
+
+            }
+        }
+    }
+}
